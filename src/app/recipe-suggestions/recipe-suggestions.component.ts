@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '../recipe.service';
+import { RecipeService } from '../shared/recipe.service';
 
 @Component({
   selector: 'app-recipe-suggestions',
