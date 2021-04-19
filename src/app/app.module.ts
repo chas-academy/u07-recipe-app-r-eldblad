@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { RecipeSuggestionsComponent } from './recipe-suggestions/recipe-suggestions.component';
 import { SavedRecipesComponent } from './saved-recipes/saved-recipes.component';
+import { RecipeCardComponent } from './recipe-card/recipe-card.component';
 
 const appRoutes: Routes = [
   { path: '', component: RecipeSuggestionsComponent },
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     RecipeSuggestionsComponent,
     SavedRecipesComponent,
+    RecipeCardComponent,
   ],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
   providers: [],
