@@ -14,14 +14,11 @@ export class RecipeService {
   getRecipesFromApi(): Observable<any[]> {
     return this.http.get<any[]>(this.recipeUrl);
   }
-  saveRecipes() {
-    this.getRecipesFromApi().subscribe((recipes) => {
-      this.recipes = Array.of(recipes);
-    });
-  }
   getRecipes(): Array<object> {
-    if (this.recipes) {
-      this.getRecipesFromApi();
+    if (!this.recipes) {
+      this.getRecipesFromApi().subscribe((recipes) => {
+        this.recipes = Array.of(recipes);
+      });
     }
     return this.recipes;
   }
