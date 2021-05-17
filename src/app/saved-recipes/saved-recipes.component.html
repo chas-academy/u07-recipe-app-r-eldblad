@@ -1,1 +1,17 @@
-<p>saved-recipes works!</p>
+<div class="card-container" *ngFor="let recipe of userRecipes">
+  <div class="card" style="width: 18rem">
+    <img
+      class="card-img-top"
+      src="{{ recipe?.image }}"
+      alt="Card
+      image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ recipe?.title }}</h5>
+      <a href="#" class="btn btn-primary">Show Recipe</a>
+      <button class="btn btn-secondary" (click)="deleteUserRecipe(recipe)">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

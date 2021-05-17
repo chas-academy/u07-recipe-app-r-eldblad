@@ -1,0 +1,18 @@
+.get-recipe-button {
+  color: blue;
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid black;
+  font-weight: bold;
+}
+
+.get-recipe-button:hover {
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+
+.filter-recipes-button {
+  margin: 1em;
+  padding: 1em;
+}

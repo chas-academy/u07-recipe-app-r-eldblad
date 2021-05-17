@@ -5,23 +5,24 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { RecipeSuggestionsComponent } from './recipe-suggestions/recipe-suggestions.component';
 import { SavedRecipesComponent } from './saved-recipes/saved-recipes.component';
-import { RecipeCardComponent } from './recipe-card/recipe-card.component';
+import { RecipeSuggestionsComponent } from './recipe-suggestions/recipe-suggestions.component';
+import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
 
 const appRoutes: Routes = [
   { path: '', component: RecipeSuggestionsComponent },
   { path: 'suggestions', component: RecipeSuggestionsComponent },
   { path: 'recipes', component: SavedRecipesComponent },
+  { path: 'recipe/:id', component: RecipeInfoComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipeSuggestionsComponent,
     SavedRecipesComponent,
-    RecipeCardComponent,
+    RecipeSuggestionsComponent,
+    RecipeInfoComponent,
   ],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
   providers: [],

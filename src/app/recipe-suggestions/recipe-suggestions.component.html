@@ -1,27 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"></a>
-  <div class="collapse navbar-collapse d-flex" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Förrätt</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Huvudrätt</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Dessert</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Vegetariskt</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Gluten</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Nötter</a>
-      </li>
-    </ul>
+<a class="get-recipe-button" (click)="getRecipes()">Get recipes</a>
+<button class="filter-recipes-button" (click)="filterRecipes('starter')">
+  Starters
+</button>
+<button class="filter-recipes-button" (click)="filterRecipes('main course')">
+  Main Courses
+</button>
+<button class="filter-recipes-button" (click)="filterRecipes('side dish')">
+  Side dishes
+</button>
+<button class="filter-recipes-button" (click)="resetFilters()">Show all</button>
+<div class="card-container" *ngFor="let recipe of recipes?.recipes">
+  <div class="card" style="width: 18rem">
+    <img
+      class="card-img-top"
+      src="{{ recipe?.image }}"
+      alt="Card
+    image cap"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ recipe?.title }}</h5>
+      <a href="#" class="btn btn-primary">Show Recipe</a>
+      <button class="btn btn-secondary" (click)="saveUserRecipe(recipe)">
+        Save
+      </button>
+    </div>
   </div>
-</nav>
-
-<app-recipe-card></app-recipe-card>
+</div>
