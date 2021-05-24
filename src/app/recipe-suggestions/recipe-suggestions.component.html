@@ -1,15 +1,28 @@
 <a class="get-recipe-button" (click)="getRecipes()">Get recipes</a>
-<button class="filter-recipes-button" (click)="filterRecipes('starter')">
+<button class="filter-recipes-button" (click)="filterByDishTypes('starter')">
   Starters
 </button>
-<button class="filter-recipes-button" (click)="filterRecipes('main course')">
+<button
+  class="filter-recipes-button"
+  (click)="filterByDishTypes('main course')"
+>
   Main Courses
 </button>
-<button class="filter-recipes-button" (click)="filterRecipes('side dish')">
-  Side dishes
+<button class="filter-recipes-button" (click)="filterByDishTypes('side dish')">
+  Side Dishes
 </button>
+
+<button class="filter-recipes-button" (click)="filterByVegan()">Vegan</button>
+<button class="filter-recipes-button" (click)="filterByDairy()">
+  Dairy Free
+</button>
+<button class="filter-recipes-button" (click)="filterByGluten()">
+  Gluten Free
+</button>
+
 <button class="filter-recipes-button" (click)="resetFilters()">Show all</button>
-<div class="card-container" *ngFor="let recipe of recipes?.recipes">
+
+<!-- <div class="card-container" *ngFor="let recipe of recipes?.recipes">
   <div class="card" style="width: 18rem">
     <img
       class="card-img-top"
@@ -19,10 +32,33 @@
     />
     <div class="card-body">
       <h5 class="card-title">{{ recipe?.title }}</h5>
-      <a href="#" class="btn btn-primary">Show Recipe</a>
+      <button class="btn btn-primary" (click)="onSelect(recipe.id)">
+        Show Recipe
+      </button>
       <button class="btn btn-secondary" (click)="saveUserRecipe(recipe)">
         Save
       </button>
+    </div>
+  </div>
+</div> -->
+
+<div class="container-fluid" *ngFor="let recipe of recipes">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="thumbnail">
+        <img src="{{ recipe?.image }}" alt="..." />
+        <div class="ca1ption">
+          <h3>{{ recipe?.title }}</h3>
+          <p>
+            <button class="btn btn-primary" (click)="onSelect(recipe.id)">
+              Show Recipe
+            </button>
+            <button class="btn btn-secondary" (click)="saveUserRecipe(recipe)">
+              Save
+            </button>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>

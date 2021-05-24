@@ -1,1 +1,12 @@
-<p>recipe-info works!</p>
+<div class="col-md-8">
+  <h1>{{ recipe?.title }}</h1>
+
+  <img
+    class="card-img-top img-fluid"
+    src="{{ recipe?.image }}"
+    alt="Card
+    image cap"
+  />
+  <h4>Instructions</h4>
+  <p id="instructions">{{ recipe?.instructions }}</p>
+</div>

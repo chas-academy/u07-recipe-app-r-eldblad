@@ -1,20 +1,32 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { fromEventPattern, Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeService {
   recipes: any = [];
   userRecipes: any = [];
-  recipeUrl: string = `https://api.spoonacular.com/recipes/random?number=100&apiKey=b492684e487f4ca9a1e8a11b288e4239`;
+  recipeId: number;
+
+  recipeUrl: string = `https://api.spoonacular.com/recipes/random?number=100&apiKey=${environment.API_KEY}`;
+
   constructor(private http: HttpClient) {}
+
+  getRecipe(id: number): Observable<object> {
+    return this.http.get<any[]>(
+      `https://api.spoonacular.com/recipes/${id}/information?apiKey=b492684e487f4ca9a1e8a11b288e4239`
+    );
+  }
+
   getRecipes(): Observable<object> {
     return this.http.get<any[]>(this.recipeUrl);
   }
-  saveRecipes(recipes) {
+
+  saveRecipes(data) {
     if (!this.recipes.length) {
-      this.recipes = recipes;
+      this.recipes = data.recipes;
     }
   }
   getSavedRecipes(): Array<object> {
@@ -27,7 +39,7 @@ export class RecipeService {
     console.log(this.userRecipes);
   }
   getSavedUserRecipes() {
-    return this.userRecipes;
+    return this.userRecipes ? this.userRecipes : [];
   }
   deleteUserRecipes(userRecipe) {
     // scanna this.userRecipes efter ett id som matchar userRecipe.id

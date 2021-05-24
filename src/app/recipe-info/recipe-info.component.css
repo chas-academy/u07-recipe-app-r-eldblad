@@ -1,0 +1,13 @@
+div {
+  margin: 2em;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+img {
+  margin: 1em;
+  width: 30%;
+  float: left;
+}

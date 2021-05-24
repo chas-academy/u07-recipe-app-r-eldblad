@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { RecipeService } from '../shared/recipe.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-recipe-suggestions',
   templateUrl: './recipe-suggestions.component.html',
@@ -8,12 +9,13 @@ import { RecipeService } from '../shared/recipe.service';
 export class RecipeSuggestionsComponent implements OnInit {
   recipes: any = [];
   allRecipes: any = [];
-  constructor(private recipeData: RecipeService) {}
+  recipeId: number;
+
+  constructor(private recipeData: RecipeService, private router: Router) {}
+
   ngOnInit(): void {
     this.recipes = this.recipeData.getSavedRecipes();
     this.allRecipes = [...this.recipeData.getSavedRecipes()];
-    //console.log('Saved recipes');
-    //console.log(this.allRecipes);
   }
   getRecipes() {
     if (this.recipes.length === 0) {
@@ -28,17 +30,33 @@ export class RecipeSuggestionsComponent implements OnInit {
     this.recipeData.saveUserRecipes(userRecipe);
   }
   resetFilters() {
-    this.recipes.recipes = [...this.allRecipes.recipes];
-    console.log(this.allRecipes.recipes);
-    console.log(this.recipes.recipes);
+    this.recipes = [...this.allRecipes];
   }
-  filterRecipes(x) {
+  filterByDishTypes(dishType) {
     // filtrera this.recipes så att enbart recept med this.recipes.dishTypes (array) inkluderar x
-    this.allRecipes.recipes = [...this.recipes.recipes];
-    console.log(this.allRecipes.recipes);
-    this.recipes.recipes = [
-      ...this.recipes.recipes.filter((recipe) => recipe.dishTypes.includes(x)),
+    this.resetFilters();
+    this.recipes = [
+      ...this.recipes.filter((recipe) => recipe.dishTypes.includes(dishType)),
     ];
     //console.log(this.recipes.recipes);
+  }
+
+  filterByVegan() {
+    this.resetFilters();
+    this.recipes = [...this.recipes.filter((recipe) => recipe.vegan)];
+  }
+
+  filterByGluten() {
+    this.resetFilters();
+    this.recipes = [...this.recipes.filter((recipe) => recipe.glutenFree)];
+  }
+
+  filterByDairy() {
+    this.resetFilters();
+    this.recipes = [...this.recipes.filter((recipe) => recipe.dairyFree)];
+  }
+
+  onSelect(userRecipe) {
+    this.router.navigate(['/recipe', userRecipe]);
   }
 }

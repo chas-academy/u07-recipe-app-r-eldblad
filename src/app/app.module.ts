@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { SavedRecipesComponent } from './saved-recipes/saved-recipes.component';
 import { RecipeSuggestionsComponent } from './recipe-suggestions/recipe-suggestions.component';
 import { RecipeInfoComponent } from './recipe-info/recipe-info.component';
+/* import { MatProgressBarModule } from '@angular/material/progress-bar'; */
 
 const appRoutes: Routes = [
   { path: '', component: RecipeSuggestionsComponent },
@@ -23,6 +24,7 @@ const appRoutes: Routes = [
     SavedRecipesComponent,
     RecipeSuggestionsComponent,
     RecipeInfoComponent,
+    /*  MatProgressBarModule, */
   ],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
   providers: [],
