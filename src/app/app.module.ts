@@ -15,6 +15,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { UserProfileComponent } from './auth/user-profile/user-profile.component';
 
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { RecipeListsComponent } from './recipe-lists/recipe-lists.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     SigninComponent,
     SignupComponent,
     UserProfileComponent,
+    RecipeListsComponent,
   ],
   imports: [
     BrowserModule,

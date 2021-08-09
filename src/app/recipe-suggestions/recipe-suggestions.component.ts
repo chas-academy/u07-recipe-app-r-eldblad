@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { RecipeService } from '../shared/recipe.service';
 import { Router } from '@angular/router';
+import { AuthStateService } from '../auth/auth-state.service';
 @Component({
   selector: 'app-recipe-suggestions',
   templateUrl: './recipe-suggestions.component.html',
@@ -10,12 +11,20 @@ export class RecipeSuggestionsComponent implements OnInit {
   recipes: any = [];
   allRecipes: any = [];
   recipeId: number;
+  isSignedIn: boolean;
 
-  constructor(private recipeData: RecipeService, private router: Router) {}
+  constructor(
+    private recipeData: RecipeService,
+    private router: Router,
+    private auth: AuthStateService
+  ) {}
 
   ngOnInit(): void {
     this.recipes = this.recipeData.getSavedRecipes();
     this.allRecipes = [...this.recipeData.getSavedRecipes()];
+    this.auth.userAuthState.subscribe((val) => {
+      this.isSignedIn = val;
+    });
   }
   getRecipes() {
     if (this.recipes.length === 0) {

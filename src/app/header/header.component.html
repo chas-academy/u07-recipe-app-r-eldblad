@@ -8,6 +8,9 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/recipes">Saved Recipes</a>
       </li>
+      <li class="nav-item" *ngIf="isSignedIn">
+        <a class="nav-link" routerLink="/recipe-lists">Recipe Lists</a>
+      </li>
     </ul>
   </div>
   <div
@@ -30,7 +33,9 @@
       <a class="p-2 text-dark" *ngIf="!isSignedIn" routerLink="/login"
         >Log in</a
       >
-      <a class="p-2 text-dark" routerLink="/register">Register</a>
+      <a class="p-2 text-dark" *ngIf="!isSignedIn" routerLink="/register"
+        >Register</a
+      >
     </nav>
     <button
       class="btn btn-outline-primary"
