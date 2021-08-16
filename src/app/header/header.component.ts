@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../auth/token.service';
 import { AuthStateService } from '../auth/auth-state.service';
+import { RecipeListService } from '../shared/recipe-list.service';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +24,6 @@ export class HeaderComponent implements OnInit {
       this.isSignedIn = val;
     });
   }
-
   // Signout
   signOut() {
     this.auth.setAuthState(false);

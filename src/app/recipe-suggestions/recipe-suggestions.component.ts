@@ -2,6 +2,7 @@ import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { RecipeService } from '../shared/recipe.service';
 import { Router } from '@angular/router';
 import { AuthStateService } from '../auth/auth-state.service';
+import { RecipeListService } from '../shared/recipe-list.service';
 @Component({
   selector: 'app-recipe-suggestions',
   templateUrl: './recipe-suggestions.component.html',
@@ -26,6 +27,9 @@ export class RecipeSuggestionsComponent implements OnInit {
       this.isSignedIn = val;
     });
   }
+
+  createRecipeList() {}
+
   getRecipes() {
     if (this.recipes.length === 0) {
       this.recipeData.getRecipes().subscribe((data) => {

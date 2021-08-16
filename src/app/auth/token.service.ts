@@ -6,8 +6,8 @@ import { environment } from 'src/environments/environment';
 })
 export class TokenService {
   private issuer = {
-    login: environment.SIGN_IN_URL,
-    register: environment.REGISTER_USER_URL,
+    login: environment.SIGN_IN,
+    register: environment.REGISTER_USER,
   };
 
   constructor() {}

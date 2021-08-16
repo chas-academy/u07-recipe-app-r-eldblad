@@ -1,7 +1,13 @@
 export const environment = {
   production: false,
   API_KEY: 'b492684e487f4ca9a1e8a11b288e4239',
-  REGISTER_USER_URL: 'http://127.0.0.1:80/api/auth/register',
-  SIGN_IN_URL: 'http://127.0.0.1:80/api/auth/login',
-  PROFILE_USER_URL: 'http://127.0.0.1:80/api/auth/user-profile',
+
+  // User Requests
+  REGISTER_USER: 'http://127.0.0.1:80/api/auth/register',
+  SIGN_IN: 'http://127.0.0.1:80/api/auth/login',
+  PROFILE_USER: 'http://127.0.0.1:80/api/auth/user-profile',
+
+  // CRUD Requests
+  GET_ALL_RECIPE_LISTS: 'http://127.0.0.1:80/api/auth/recipe-lists',
+  CREATE_NEW_RECIPE_LIST: 'http://127.0.0.1:80/api/auth/recipe-lists',
 };

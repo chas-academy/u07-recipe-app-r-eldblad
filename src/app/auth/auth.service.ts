@@ -19,16 +19,16 @@ export class AuthService {
 
   // User registration
   register(user: User): Observable<any> {
-    return this.http.post(environment.REGISTER_USER_URL, user);
+    return this.http.post(environment.REGISTER_USER, user);
   }
 
   // Login
   signin(user: User): Observable<any> {
-    return this.http.post<any>(environment.SIGN_IN_URL, user);
+    return this.http.post<any>(environment.SIGN_IN, user);
   }
 
   // Access user profile
   profileUser(): Observable<any> {
-    return this.http.get(environment.PROFILE_USER_URL);
+    return this.http.get(environment.PROFILE_USER);
   }
 }

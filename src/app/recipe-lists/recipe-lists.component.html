@@ -1,10 +1,14 @@
 <div class="auth-wrapper">
-  <form class="form-signin">
-    <!-- Login -->
+  <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    <!-- Create Recipe List -->
     <div class="form-group">
       <label>Title</label>
       <input type="title" class="form-control" formControlName="title" />
     </div>
     <button type="submit" class="btn btn-block btn-primary">Create</button>
   </form>
+</div>
+
+<div class="recipeLists" *ngFor="let recipeList of recipeLists$ | async">
+  <h3>{{ recipeList?.title }}</h3>
 </div>

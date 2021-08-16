@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { TokenService } from './auth/token.service';
-import { AuthStateService } from './auth/auth-state.service';
 
 @Component({
   selector: 'app-root',
