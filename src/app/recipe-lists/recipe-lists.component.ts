@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeListService } from '../shared/recipe-list.service';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-recipe-lists',
@@ -11,7 +11,8 @@ import { Observable } from 'rxjs';
 export class RecipeListsComponent implements OnInit {
   createForm: FormGroup;
   listTitle: string;
-  recipeLists$: Observable<any>;
+  allRecipeLists: any = [];
+  subscription: Subscription;
   constructor(
     private recipeListData: RecipeListService,
     private fb: FormBuilder
@@ -21,12 +22,20 @@ export class RecipeListsComponent implements OnInit {
     this.createForm = this.fb.group({
       title: '',
     });
+    this.subscription = this.recipeListData
+      .getRecipeLists()
+      .subscribe((data: any) => {
+        this.allRecipeLists = data;
+      });
+  }
 
-    this.recipeLists$ = this.recipeListData.getRecipeLists();
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   onSubmit() {
     this.listTitle = this.createForm.get('title').value;
     this.recipeListData.createList(this.listTitle).subscribe();
+    this.ngOnInit();
   }
 }
