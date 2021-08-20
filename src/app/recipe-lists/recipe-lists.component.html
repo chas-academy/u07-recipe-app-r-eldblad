@@ -1,27 +1,53 @@
 <div class="auth-wrapper">
-  <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
-    <!-- Create Recipe List -->
-    <div class="form-group">
-      <label>Title</label>
-      <input type="title" class="form-control" formControlName="title" />
-    </div>
-    <button type="submit" class="btn btn-block btn-primary">Create</button>
-  </form>
+  <ng-container *ngIf="isClicked; then clicked; else notClicked"></ng-container>
+
+  <ng-template #clicked>
+    <!-- This form is for updating a new list -->
+    <form [formGroup]="editForm" (ngSubmit)="onUpdate()">
+      <div class="form-group">
+        <label>Title</label>
+        <input
+          type="title"
+          class="form-control"
+          formControlName="editedListTitle"
+          ng-value="{{ setValue }}"
+        />
+      </div>
+      <button type="submit" class="btn btn-block btn-primary">Update</button>
+    </form>
+  </ng-template>
+  <!-- This form is for creating a new list-->
+  <ng-template #notClicked>
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label>Title</label>
+        <input
+          type="title"
+          class="form-control"
+          formControlName="createdListTitle"
+        />
+      </div>
+      <button type="submit" class="btn btn-block btn-primary">Create</button>
+    </form>
+  </ng-template>
+
   <table class="table">
     <thead>
       <tr>
-        <th scope="col">ID</th>
         <th scope="col">Title</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let list of allRecipeLists">
-        <td>{{ list?.id }}</td>
         <td>{{ list?.title }}</td>
         <td>
-          <button class="btn btn-primary">Edit</button>
-          <button class="btn btn-danger">Delete</button>
+          <button class="btn btn-primary" (click)="toggleClicked(list?.id)">
+            Edit
+          </button>
+          <button class="btn btn-danger" (click)="onDelete(list?.id)">
+            Delete
+          </button>
         </td>
       </tr>
     </tbody>

@@ -9,7 +9,6 @@ export class RecipeService {
   recipes: any = [];
   userRecipes: any = [];
   recipeId: number;
-
   recipeUrl: string = `https://api.spoonacular.com/recipes/random?number=100&apiKey=${environment.API_KEY}`;
 
   constructor(private http: HttpClient) {}
@@ -29,6 +28,7 @@ export class RecipeService {
       this.recipes = data.recipes;
     }
   }
+
   getSavedRecipes(): Array<object> {
     return this.recipes;
   }

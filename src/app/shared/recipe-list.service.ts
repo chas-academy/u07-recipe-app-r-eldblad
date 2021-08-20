@@ -7,16 +7,31 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RecipeListService {
-  renderAllRecipeLists = environment.GET_ALL_RECIPE_LISTS;
-  createListUrl = environment.CREATE_NEW_RECIPE_LIST;
+  getAllRecipeLists = environment.GET_ALL_RECIPE_LISTS;
+  fetchRecipeList = environment.GET_RECIPE_LIST;
+  createListUrl = environment.CREATE_RECIPE_LIST;
+  deleteListUrl = environment.DELETE_RECIPE_LIST;
+  updateListUrl = environment.UPDATE_RECIPE_LIST;
 
   constructor(private http: HttpClient) {}
 
   getRecipeLists(): Observable<any> {
-    return this.http.get(this.renderAllRecipeLists);
+    return this.http.get(this.getAllRecipeLists);
+  }
+
+  getRecipeList(id: number): Observable<any> {
+    return this.http.get(this.fetchRecipeList + '/' + id);
   }
 
   createList(title: string): Observable<any> {
     return this.http.post<any>(this.createListUrl, { title: title });
+  }
+
+  updateList(title: string, id: number): Observable<any> {
+    return this.http.put<any>(this.updateListUrl + '/' + id, { title: title });
+  }
+
+  deleteList(id: number): Observable<any> {
+    return this.http.delete<any>(this.deleteListUrl + '/' + id);
   }
 }

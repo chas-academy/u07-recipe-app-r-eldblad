@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeListService } from '../shared/recipe-list.service';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -10,22 +10,33 @@ import { Subscription } from 'rxjs';
 })
 export class RecipeListsComponent implements OnInit {
   createForm: FormGroup;
-  listTitle: string;
+  editForm: FormGroup;
+  createdListTitle: string;
+  listUpdatedTitle: string;
+  listId: number;
   allRecipeLists: any = [];
   subscription: Subscription;
+  isClicked: boolean = false;
+  recipe_ids: any = [];
   constructor(
-    private recipeListData: RecipeListService,
+    private recipeListService: RecipeListService,
     private fb: FormBuilder
   ) {}
 
   ngOnInit() {
     this.createForm = this.fb.group({
-      title: '',
+      createdListTitle: '',
     });
-    this.subscription = this.recipeListData
+
+    this.editForm = this.fb.group({
+      editedListTitle: '',
+    });
+    this.isClicked = false;
+    this.subscription = this.recipeListService
       .getRecipeLists()
       .subscribe((data: any) => {
         this.allRecipeLists = data;
+        console.log(this.allRecipeLists);
       });
   }
 
@@ -34,8 +45,33 @@ export class RecipeListsComponent implements OnInit {
   }
 
   onSubmit() {
-    this.listTitle = this.createForm.get('title').value;
-    this.recipeListData.createList(this.listTitle).subscribe();
+    this.createdListTitle = this.createForm.get('createdListTitle').value;
+    this.recipeListService.createList(this.createdListTitle).subscribe();
+    this.ngOnInit();
+  }
+
+  onDelete(list: number) {
+    this.listId = list;
+    this.recipeListService.deleteList(this.listId).subscribe();
+    this.ngOnInit();
+  }
+
+  getTitle() {}
+
+  toggleClicked(list: number) {
+    this.listId = list;
+    this.recipeListService.getRecipeList(this.listId).subscribe((list) => {
+      this.editForm.setValue({ editedListTitle: list.title });
+    });
+    return (this.isClicked = true);
+  }
+
+  onUpdate() {
+    this.listUpdatedTitle = this.editForm.get('editedListTitle').value;
+
+    this.recipeListService
+      .updateList(this.listUpdatedTitle, this.listId)
+      .subscribe();
     this.ngOnInit();
   }
 }

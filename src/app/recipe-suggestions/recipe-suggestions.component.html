@@ -56,7 +56,13 @@
             <button class="btn btn-secondary" (click)="saveUserRecipe(recipe)">
               Save
             </button>
-            <button class="btn btn-secondary" *ngIf="isSignedIn">Add</button>
+            <button
+              class="btn btn-secondary"
+              *ngIf="isSignedIn"
+              (click)="addRecipe()"
+            >
+              Add to list
+            </button>
           </p>
         </div>
       </div>

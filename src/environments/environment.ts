@@ -9,5 +9,8 @@ export const environment = {
 
   // CRUD Requests
   GET_ALL_RECIPE_LISTS: 'http://127.0.0.1:80/api/auth/recipe-lists',
-  CREATE_NEW_RECIPE_LIST: 'http://127.0.0.1:80/api/auth/recipe-lists',
+  GET_RECIPE_LIST: 'http://127.0.0.1:80/api/auth/recipe-lists',
+  CREATE_RECIPE_LIST: 'http://127.0.0.1:80/api/auth/recipe-lists',
+  UPDATE_RECIPE_LIST: 'http://127.0.0.1:80/api/auth/recipe-lists',
+  DELETE_RECIPE_LIST: 'http://127.0.0.1:80/api/auth/recipe-lists',
 };

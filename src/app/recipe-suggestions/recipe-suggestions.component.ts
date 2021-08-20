@@ -13,16 +13,18 @@ export class RecipeSuggestionsComponent implements OnInit {
   allRecipes: any = [];
   recipeId: number;
   isSignedIn: boolean;
+  recipeIds: any = [];
 
   constructor(
-    private recipeData: RecipeService,
+    private recipeService: RecipeService,
+    private recipeListService: RecipeListService,
     private router: Router,
     private auth: AuthStateService
   ) {}
 
   ngOnInit(): void {
-    this.recipes = this.recipeData.getSavedRecipes();
-    this.allRecipes = [...this.recipeData.getSavedRecipes()];
+    this.recipes = this.recipeService.getSavedRecipes();
+    this.allRecipes = [...this.recipeService.getSavedRecipes()];
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
     });
@@ -32,15 +34,15 @@ export class RecipeSuggestionsComponent implements OnInit {
 
   getRecipes() {
     if (this.recipes.length === 0) {
-      this.recipeData.getRecipes().subscribe((data) => {
-        this.recipeData.saveRecipes(data);
+      this.recipeService.getRecipes().subscribe((data) => {
+        this.recipeService.saveRecipes(data);
         this.ngOnInit();
       });
     }
   }
   saveUserRecipe(userRecipe) {
     //console.log(userRecipe);
-    this.recipeData.saveUserRecipes(userRecipe);
+    this.recipeService.saveUserRecipes(userRecipe);
   }
   resetFilters() {
     this.recipes = [...this.allRecipes];
@@ -71,5 +73,10 @@ export class RecipeSuggestionsComponent implements OnInit {
 
   onSelect(userRecipe) {
     this.router.navigate(['/recipe', userRecipe]);
+  }
+
+  addRecipe() {
+    this.recipeIds.push(this.recipeId);
+    console.log(this.recipeIds);
   }
 }
