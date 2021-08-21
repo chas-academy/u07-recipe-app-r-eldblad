@@ -3,6 +3,7 @@ import { RecipeService } from '../shared/recipe.service';
 import { Router } from '@angular/router';
 import { AuthStateService } from '../auth/auth-state.service';
 import { RecipeListService } from '../shared/recipe-list.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-recipe-suggestions',
   templateUrl: './recipe-suggestions.component.html',
@@ -13,7 +14,9 @@ export class RecipeSuggestionsComponent implements OnInit {
   allRecipes: any = [];
   recipeId: number;
   isSignedIn: boolean;
-  recipeIds: any = [];
+  allRecipeLists: any = [];
+  recipeListIds: any = [];
+  subscription: Subscription;
 
   constructor(
     private recipeService: RecipeService,
@@ -28,6 +31,13 @@ export class RecipeSuggestionsComponent implements OnInit {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
     });
+
+    this.subscription = this.recipeListService
+      .getRecipeLists()
+      .subscribe((data: any) => {
+        this.allRecipeLists = data;
+        console.log(this.allRecipeLists);
+      });
   }
 
   createRecipeList() {}
@@ -75,8 +85,5 @@ export class RecipeSuggestionsComponent implements OnInit {
     this.router.navigate(['/recipe', userRecipe]);
   }
 
-  addRecipe() {
-    this.recipeIds.push(this.recipeId);
-    console.log(this.recipeIds);
-  }
+  addRecipeListId() {}
 }

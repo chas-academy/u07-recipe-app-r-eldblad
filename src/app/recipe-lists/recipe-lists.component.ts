@@ -17,7 +17,7 @@ export class RecipeListsComponent implements OnInit {
   allRecipeLists: any = [];
   subscription: Subscription;
   isClicked: boolean = false;
-  recipe_ids: any = [];
+  recipeListIds: any = [];
   constructor(
     private recipeListService: RecipeListService,
     private fb: FormBuilder
@@ -55,8 +55,6 @@ export class RecipeListsComponent implements OnInit {
     this.recipeListService.deleteList(this.listId).subscribe();
     this.ngOnInit();
   }
-
-  getTitle() {}
 
   toggleClicked(list: number) {
     this.listId = list;

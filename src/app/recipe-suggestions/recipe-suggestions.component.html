@@ -56,14 +56,22 @@
             <button class="btn btn-secondary" (click)="saveUserRecipe(recipe)">
               Save
             </button>
+          </p>
+
+          <div *ngIf="isSignedIn" ngbDropdown class="d-inline-block">
             <button
-              class="btn btn-secondary"
-              *ngIf="isSignedIn"
-              (click)="addRecipe()"
+              class="btn btn-outline-primary"
+              id="recipeListDropDown"
+              ngbDropdownToggle
             >
               Add to list
             </button>
-          </p>
+            <div ngbDropdownMenu aria-labelledby="recipeListDropDown">
+              <div *ngFor="let list of allRecipeLists">
+                <button ngbDropdownItem>{{ list?.title }}</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
