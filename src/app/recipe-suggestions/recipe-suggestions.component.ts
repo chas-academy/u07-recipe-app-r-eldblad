@@ -40,6 +40,10 @@ export class RecipeSuggestionsComponent implements OnInit {
       });
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   createRecipeList() {}
 
   getRecipes() {
@@ -85,5 +89,8 @@ export class RecipeSuggestionsComponent implements OnInit {
     this.router.navigate(['/recipe', userRecipe]);
   }
 
-  addRecipeListId() {}
+  addRecipeListId(id: number) {
+    this.recipeListIds.push(id);
+    console.log(this.recipeListIds);
+  }
 }

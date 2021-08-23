@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,6 +18,7 @@ import { UserProfileComponent } from './auth/user-profile/user-profile.component
 
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { RecipeListsComponent } from './recipe-lists/recipe-lists.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { RecipeListsComponent } from './recipe-lists/recipe-lists.component';
     ReactiveFormsModule,
     FormsModule,
     NgbModule,
+    BrowserAnimationsModule,
   ],
   providers: [
     {

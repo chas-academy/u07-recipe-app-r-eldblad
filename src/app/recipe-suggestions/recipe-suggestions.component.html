@@ -1,46 +1,31 @@
-<a class="get-recipe-button" (click)="getRecipes()">Get recipes</a>
-<button class="filter-recipes-button" (click)="filterByDishTypes('starter')">
-  Starters
-</button>
-<button
-  class="filter-recipes-button"
-  (click)="filterByDishTypes('main course')"
->
-  Main Courses
-</button>
-<button class="filter-recipes-button" (click)="filterByDishTypes('side dish')">
-  Side Dishes
-</button>
+<div class="container">
+  <a class="get-recipe-button" (click)="getRecipes()">Get recipes</a>
+  <button class="filter-recipes-button" (click)="filterByDishTypes('starter')">
+    Starters
+  </button>
+  <button
+    class="filter-recipes-button"
+    (click)="filterByDishTypes('main course')"
+  >
+    Main Courses
+  </button>
+  <button
+    class="filter-recipes-button"
+    (click)="filterByDishTypes('side dish')"
+  >
+    Side Dishes
+  </button>
 
-<button class="filter-recipes-button" (click)="filterByVegan()">Vegan</button>
-<button class="filter-recipes-button" (click)="filterByDairy()">
-  Dairy Free
-</button>
-<button class="filter-recipes-button" (click)="filterByGluten()">
-  Gluten Free
-</button>
+  <button class="filter-recipes-button" (click)="filterByVegan()">Vegan</button>
+  <button class="filter-recipes-button" (click)="filterByDairy()">
+    Dairy Free
+  </button>
+  <button class="filter-recipes-button" (click)="filterByGluten()">
+    Gluten Free
+  </button>
+</div>
 
 <button class="filter-recipes-button" (click)="resetFilters()">Show all</button>
-
-<!-- <div class="card-container" *ngFor="let recipe of recipes?.recipes">
-  <div class="card" style="width: 18rem">
-    <img
-      class="card-img-top"
-      src="{{ recipe?.image }}"
-      alt="Card
-    image cap"
-    />
-    <div class="card-body">
-      <h5 class="card-title">{{ recipe?.title }}</h5>
-      <button class="btn btn-primary" (click)="onSelect(recipe.id)">
-        Show Recipe
-      </button>
-      <button class="btn btn-secondary" (click)="saveUserRecipe(recipe)">
-        Save
-      </button>
-    </div>
-  </div>
-</div> -->
 
 <div class="container-fluid" *ngFor="let recipe of recipes">
   <div class="row">
@@ -67,8 +52,15 @@
               Add to list
             </button>
             <div ngbDropdownMenu aria-labelledby="recipeListDropDown">
-              <div *ngFor="let list of allRecipeLists">
-                <button ngbDropdownItem>{{ list?.title }}</button>
+              <div
+                *ngFor="let list of allRecipeLists; let indexOfElement = index"
+              >
+                <button
+                  (click)="addRecipeListId(recipe.id, list)"
+                  ngbDropdownItem
+                >
+                  {{ list?.title }}
+                </button>
               </div>
             </div>
           </div>
