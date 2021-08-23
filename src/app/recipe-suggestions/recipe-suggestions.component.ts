@@ -15,7 +15,7 @@ export class RecipeSuggestionsComponent implements OnInit {
   recipeId: number;
   isSignedIn: boolean;
   allRecipeLists: any = [];
-  recipeListIds: any = [];
+  recipeListIds: any = {};
   subscription: Subscription;
 
   constructor(
@@ -89,8 +89,8 @@ export class RecipeSuggestionsComponent implements OnInit {
     this.router.navigate(['/recipe', userRecipe]);
   }
 
-  addRecipeListId(id: number) {
-    this.recipeListIds.push(id);
+  getRecipeListId(listId: number, index: number) {
+    this.recipeListIds = { index, listIds: [listId] };
     console.log(this.recipeListIds);
   }
 }

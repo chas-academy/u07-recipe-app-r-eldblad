@@ -1,31 +1,54 @@
-<div class="container">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="get-recipe-button" (click)="getRecipes()">Get recipes</a>
-  <button class="filter-recipes-button" (click)="filterByDishTypes('starter')">
-    Starters
-  </button>
-  <button
-    class="filter-recipes-button"
-    (click)="filterByDishTypes('main course')"
-  >
-    Main Courses
-  </button>
-  <button
-    class="filter-recipes-button"
-    (click)="filterByDishTypes('side dish')"
-  >
-    Side Dishes
-  </button>
-
-  <button class="filter-recipes-button" (click)="filterByVegan()">Vegan</button>
-  <button class="filter-recipes-button" (click)="filterByDairy()">
-    Dairy Free
-  </button>
-  <button class="filter-recipes-button" (click)="filterByGluten()">
-    Gluten Free
-  </button>
-</div>
-
-<button class="filter-recipes-button" (click)="resetFilters()">Show all</button>
+  <div class="collapse navbar-collapse d-flex" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <button
+          class="filter-recipes-button"
+          (click)="filterByDishTypes('starter')"
+        >
+          Starters
+        </button>
+      </li>
+      <li class="nav-item">
+        <button
+          class="filter-recipes-button"
+          (click)="filterByDishTypes('main course')"
+        >
+          Main Courses
+        </button>
+      </li>
+      <li class="nav-item">
+        <button
+          class="filter-recipes-button"
+          (click)="filterByDishTypes('side dish')"
+        >
+          Side Dishes
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="filter-recipes-button" (click)="filterByVegan()">
+          Vegan
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="filter-recipes-button" (click)="filterByDairy()">
+          Dairy Free
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="filter-recipes-button" (click)="filterByGluten()">
+          Gluten Free
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="filter-recipes-button" (click)="resetFilters()">
+          Show all
+        </button>
+      </li>
+    </ul>
+  </div>
+</nav>
 
 <div class="container-fluid" *ngFor="let recipe of recipes">
   <div class="row">
@@ -34,15 +57,13 @@
         <img src="{{ recipe?.image }}" alt="..." />
         <div class="ca1ption">
           <h3>{{ recipe?.title }}</h3>
-          <p>
-            <button class="btn btn-primary" (click)="onSelect(recipe.id)">
-              Show Recipe
-            </button>
-            <button class="btn btn-secondary" (click)="saveUserRecipe(recipe)">
-              Save
-            </button>
-          </p>
 
+          <button class="btn btn-primary" (click)="onSelect(recipe.id)">
+            Show Recipe
+          </button>
+          <button class="btn btn-secondary" (click)="saveUserRecipe(recipe)">
+            Save
+          </button>
           <div *ngIf="isSignedIn" ngbDropdown class="d-inline-block">
             <button
               class="btn btn-outline-primary"
@@ -52,11 +73,9 @@
               Add to list
             </button>
             <div ngbDropdownMenu aria-labelledby="recipeListDropDown">
-              <div
-                *ngFor="let list of allRecipeLists; let indexOfElement = index"
-              >
+              <div *ngFor="let list of allRecipeLists; let indexOfList = index">
                 <button
-                  (click)="addRecipeListId(recipe.id, list)"
+                  (click)="addRecipeListId(indexOfList, recipe?.id)"
                   ngbDropdownItem
                 >
                   {{ list?.title }}
