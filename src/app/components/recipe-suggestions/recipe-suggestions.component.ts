@@ -1,8 +1,8 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
-import { RecipeService } from '../shared/recipe.service';
+import { RecipeService } from '../../shared/recipe.service';
 import { Router } from '@angular/router';
-import { AuthStateService } from '../auth/auth-state.service';
-import { RecipeListService } from '../shared/recipe-list.service';
+import { AuthStateService } from '../../auth/auth-state.service';
+import { RecipeListService } from '../../shared/recipe-list.service';
 import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-recipe-suggestions',
@@ -103,42 +103,11 @@ export class RecipeSuggestionsComponent implements OnInit {
     let currentList = this.allRecipeLists.find(obj => obj.id === list.id);
     // ovan matchar ut ett enda objekt och lägger i currentList ur stora som loggas
     console.log(currentList) // confidence level: 25%
-
     if (!currentList.recipe_ids) {
       currentList.recipe_ids = JSON.stringify([recipeId]);
     } else {
       currentList.recipe_ids = JSON.stringify([...new Set([...JSON.parse(currentList.recipe_ids), recipeId])]);
     }
-
     this.recipeListService.updateList(currentList.title, currentList.recipe_ids, currentList.id).subscribe();
-   // obeservera att denna är "orörd", vi har endast ändrat i currentList
-    // men pga pass by reference i JS är de länkade
-    // tror jag
-    //let key = list.id;
-    //this.recipeIds.push(recipeId);
-    //this.recipeListIds[key] = this.recipeIds;
-    //console.log(this.recipeListIds);
   }
 }
-/*
- onAddToList(recipeId: number, list: any) {
-
-// steg ett. hitta rätt objekt
-// steg två. ta in recipeId och lägg till en array som sparas under recipe_ids i obj ovan
-// steg tre. spara ner arrayen av objekt i apit
-// fråga till rasmus: om vi plockar ut ett objekt ur en array och modifierar objektet, ändras även ursprunsarrayen?
-// den som lever får se
-let currentList = this.allRecipeLists.find(obj => obj.id === list.id);
-// ovan matchar ut ett enda objekt och lägger i currentList ur stora som loggas
-console.log(currentList) // confidence level: 25%
-currentList.recipe_ids = !currentList.recipe_ids ? [recipeId] : [...new Set([...currentList.recipe_ids, recipeId])];
-// [ ...new Set(names) ];
-//man kan skriva om den som en if else oxo - rekommenderad övning för dig
-console.log(this.allRecipeLists); // obeservera att denna är "orörd", vi har endast ändrat i currentList
-    // men pga pass by reference i JS är de länkade
-    // tror jag
-    //let key = list.id;
-    //this.recipeIds.push(recipeId);
-    //this.recipeListIds[key] = this.recipeIds;
-    //console.log(this.recipeListIds);
-  }*/

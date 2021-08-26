@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeListService } from '../shared/recipe-list.service';
+import { RecipeListService } from '../../shared/recipe-list.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
@@ -67,11 +67,9 @@ export class RecipeListsComponent implements OnInit {
 
   onUpdate() {
     this.listUpdatedTitle = this.editForm.get('editedListTitle').value;
-
-
     this.recipeListService
       .updateList(this.listUpdatedTitle, this.recipe_ids, this.listId)
       .subscribe();
-      this.ngOnInit();
+    this.ngOnInit();
   }
 }
