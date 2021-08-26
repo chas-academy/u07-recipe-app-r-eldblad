@@ -1,0 +1,18 @@
+<div class="container-fluid" *ngFor="let recipe of recipes">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="thumbnail">
+        <img src="{{ recipe?.image }}" alt="Ingen bild tillgänglig" />
+        <div class="ca1ption">
+          <h3>{{ recipe.title }}</h3>
+          <button class="btn btn-primary" (click)="onSelect(recipe?.id)">
+            Show Recipe
+          </button>
+          <button class="btn btn-secondary" (click)="onDelete(recipe?.id)">
+            Remove from list
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

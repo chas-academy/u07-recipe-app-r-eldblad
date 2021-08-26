@@ -9,6 +9,7 @@ import { SigninComponent } from '../auth/signin/signin.component';
 import { SignupComponent } from '../auth/signup/signup.component';
 import { UserProfileComponent } from '../auth/user-profile/user-profile.component';
 import { RecipeListsComponent } from '../components/recipe-lists/recipe-lists.component';
+import { RecipeListDetailComponent } from '../components/recipe-list-detail/recipe-list-detail.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/suggestions', pathMatch: 'full' },
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
   { path: 'register', component: SignupComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: 'recipe-lists', component: RecipeListsComponent },
+  { path: 'recipe-list-detail/:id', component: RecipeListDetailComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
 

@@ -17,6 +17,7 @@ import { UserProfileComponent } from '../auth/user-profile/user-profile.componen
 import { AuthInterceptor } from '../auth/auth.interceptor';
 import { RecipeListsComponent } from '../components/recipe-lists/recipe-lists.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RecipeListDetailComponent } from '../components/recipe-list-detail/recipe-list-detail.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SignupComponent,
     UserProfileComponent,
     RecipeListsComponent,
+    RecipeListDetailComponent,
   ],
   imports: [
     BrowserModule,

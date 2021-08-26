@@ -47,7 +47,7 @@ export class RecipeListsComponent implements OnInit {
   onSubmit() {
     this.createdListTitle = this.createForm.get('createdListTitle').value;
     this.recipeListService.createList(this.createdListTitle).subscribe();
-    this.recipe_ids = null;
+    this.recipe_ids ??= null;
     this.ngOnInit();
   }
 

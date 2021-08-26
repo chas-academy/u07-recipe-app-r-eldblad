@@ -42,6 +42,9 @@
       <tr *ngFor="let list of allRecipeLists">
         <td>{{ list?.title }}</td>
         <td>
+          <button class="btn btn-primary" routerLink="/recipe-list-detail/{{list?.id}}">
+            Open Recipe List
+          </button>
           <button class="btn btn-primary" (click)="toggleClicked(list?.id)">
             Edit
           </button>
