@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SavedRecipesComponent } from './components/saved-recipes/saved-recipes.component';
-import { RecipeSuggestionsComponent } from './components/recipe-suggestions/recipe-suggestions.component';
-import { RecipeInfoComponent } from './components/recipe-info/recipe-info.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { SigninComponent } from './auth/signin/signin.component';
-import { SignupComponent } from './auth/signup/signup.component';
-import { UserProfileComponent } from './auth/user-profile/user-profile.component';
-import { RecipeListsComponent } from './components/recipe-lists/recipe-lists.component';
+import { SavedRecipesComponent } from '../components/saved-recipes/saved-recipes.component';
+import { RecipeSuggestionsComponent } from '../components/recipe-suggestions/recipe-suggestions.component';
+import { RecipeInfoComponent } from '../components/recipe-info/recipe-info.component';
+import { PageNotFoundComponent } from '../components/page-not-found/page-not-found.component';
+import { SigninComponent } from '../auth/signin/signin.component';
+import { SignupComponent } from '../auth/signup/signup.component';
+import { UserProfileComponent } from '../auth/user-profile/user-profile.component';
+import { RecipeListsComponent } from '../components/recipe-lists/recipe-lists.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/suggestions', pathMatch: 'full' },
