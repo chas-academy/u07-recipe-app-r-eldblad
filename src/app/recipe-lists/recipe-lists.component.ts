@@ -17,11 +17,11 @@ export class RecipeListsComponent implements OnInit {
   allRecipeLists: any = [];
   subscription: Subscription;
   isClicked: boolean = false;
-  recipeListIds: any = [];
+  recipe_ids: string;
   constructor(
     private recipeListService: RecipeListService,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.createForm = this.fb.group({
@@ -47,6 +47,7 @@ export class RecipeListsComponent implements OnInit {
   onSubmit() {
     this.createdListTitle = this.createForm.get('createdListTitle').value;
     this.recipeListService.createList(this.createdListTitle).subscribe();
+    this.recipe_ids = null;
     this.ngOnInit();
   }
 
@@ -67,9 +68,10 @@ export class RecipeListsComponent implements OnInit {
   onUpdate() {
     this.listUpdatedTitle = this.editForm.get('editedListTitle').value;
 
+
     this.recipeListService
-      .updateList(this.listUpdatedTitle, this.listId)
+      .updateList(this.listUpdatedTitle, this.recipe_ids, this.listId)
       .subscribe();
-    this.ngOnInit();
+      this.ngOnInit();
   }
 }

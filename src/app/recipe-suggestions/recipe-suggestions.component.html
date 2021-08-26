@@ -75,7 +75,7 @@
             <div ngbDropdownMenu aria-labelledby="recipeListDropDown">
               <div *ngFor="let list of allRecipeLists; let indexOfList = index">
                 <button
-                  (click)="addRecipeListId(indexOfList, recipe?.id)"
+                  (click)="onAddToList(recipe?.id, list)"
                   ngbDropdownItem
                 >
                   {{ list?.title }}

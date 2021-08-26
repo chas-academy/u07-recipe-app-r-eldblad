@@ -16,6 +16,7 @@ export class RecipeSuggestionsComponent implements OnInit {
   isSignedIn: boolean;
   allRecipeLists: any = [];
   recipeListIds: any = {};
+  recipeIds: any = [];
   subscription: Subscription;
 
   constructor(
@@ -23,7 +24,7 @@ export class RecipeSuggestionsComponent implements OnInit {
     private recipeListService: RecipeListService,
     private router: Router,
     private auth: AuthStateService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.recipes = this.recipeService.getSavedRecipes();
@@ -44,7 +45,7 @@ export class RecipeSuggestionsComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  createRecipeList() {}
+  createRecipeList() { }
 
   getRecipes() {
     if (this.recipes.length === 0) {
@@ -67,7 +68,6 @@ export class RecipeSuggestionsComponent implements OnInit {
     this.recipes = [
       ...this.recipes.filter((recipe) => recipe.dishTypes.includes(dishType)),
     ];
-    //console.log(this.recipes.recipes);
   }
 
   filterByVegan() {
@@ -88,9 +88,57 @@ export class RecipeSuggestionsComponent implements OnInit {
   onSelect(userRecipe) {
     this.router.navigate(['/recipe', userRecipe]);
   }
+  // save: updateList (service)
+  onAddToList(recipeId: number, list: any) {
+    /*
+{id: 80, title: "czsczc", recipe_ids: null, user_id: 1, created_at: "2021-08-21T10:44:48.000000Z", …}
+1: {id: 81, title: "hello", recipe_ids: null, user_id: 1, created_at: "2021-08-25T11:14:58.000000Z", …}
+2: {id: 82, title: "mamma", recipe_ids: null, user_id: 1, created_at: "2021-08-25T11:15:00.000000Z", …}
+    */
+    // steg ett. hitta rätt objekt
+    // steg två. ta in recipeId och lägg till en array som sparas under recipe_ids i obj ovan
+    // steg tre. spara ner arrayen av objekt i apit
+    // fråga till rasmus: om vi plockar ut ett objekt ur en array och modifierar objektet, ändras även ursprunsarrayen?
+    // den som lever får se
+    let currentList = this.allRecipeLists.find(obj => obj.id === list.id);
+    // ovan matchar ut ett enda objekt och lägger i currentList ur stora som loggas
+    console.log(currentList) // confidence level: 25%
 
-  getRecipeListId(listId: number, index: number) {
-    this.recipeListIds = { index, listIds: [listId] };
-    console.log(this.recipeListIds);
+    if (!currentList.recipe_ids) {
+      currentList.recipe_ids = JSON.stringify([recipeId]);
+    } else {
+      currentList.recipe_ids = JSON.stringify([...new Set([...JSON.parse(currentList.recipe_ids), recipeId])]);
+    }
+
+    this.recipeListService.updateList(currentList.title, currentList.recipe_ids, currentList.id).subscribe();
+   // obeservera att denna är "orörd", vi har endast ändrat i currentList
+    // men pga pass by reference i JS är de länkade
+    // tror jag
+    //let key = list.id;
+    //this.recipeIds.push(recipeId);
+    //this.recipeListIds[key] = this.recipeIds;
+    //console.log(this.recipeListIds);
   }
 }
+/*
+ onAddToList(recipeId: number, list: any) {
+
+// steg ett. hitta rätt objekt
+// steg två. ta in recipeId och lägg till en array som sparas under recipe_ids i obj ovan
+// steg tre. spara ner arrayen av objekt i apit
+// fråga till rasmus: om vi plockar ut ett objekt ur en array och modifierar objektet, ändras även ursprunsarrayen?
+// den som lever får se
+let currentList = this.allRecipeLists.find(obj => obj.id === list.id);
+// ovan matchar ut ett enda objekt och lägger i currentList ur stora som loggas
+console.log(currentList) // confidence level: 25%
+currentList.recipe_ids = !currentList.recipe_ids ? [recipeId] : [...new Set([...currentList.recipe_ids, recipeId])];
+// [ ...new Set(names) ];
+//man kan skriva om den som en if else oxo - rekommenderad övning för dig
+console.log(this.allRecipeLists); // obeservera att denna är "orörd", vi har endast ändrat i currentList
+    // men pga pass by reference i JS är de länkade
+    // tror jag
+    //let key = list.id;
+    //this.recipeIds.push(recipeId);
+    //this.recipeListIds[key] = this.recipeIds;
+    //console.log(this.recipeListIds);
+  }*/

@@ -13,7 +13,7 @@ export class RecipeListService {
   deleteListUrl = environment.DELETE_RECIPE_LIST;
   updateListUrl = environment.UPDATE_RECIPE_LIST;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getRecipeLists(): Observable<any> {
     return this.http.get(this.getAllRecipeLists);
@@ -27,8 +27,8 @@ export class RecipeListService {
     return this.http.post<any>(this.createListUrl, { title: title });
   }
 
-  updateList(title: string, id: number): Observable<any> {
-    return this.http.put<any>(this.updateListUrl + '/' + id, { title: title });
+  updateList(title: string, recipe_ids: string, id: number): Observable<any> {
+    return this.http.put<any>(this.updateListUrl + '/' + id, { title: title, recipe_ids: recipe_ids });
   }
 
   deleteList(id: number): Observable<any> {
