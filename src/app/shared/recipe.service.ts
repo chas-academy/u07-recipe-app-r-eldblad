@@ -9,13 +9,13 @@ export class RecipeService {
   recipes: any = [];
   userRecipes: any = [];
   recipeId: number;
-  recipeUrl: string = `https://api.spoonacular.com/recipes/random?number=100&apiKey=${environment.API_KEY}`;
+  recipeUrl: string = `https://api.spoonacular.com/recipes/random?number=100&apiKey=${process.env.API_KEY}`;
 
   constructor(private http: HttpClient) {}
 
   getRecipe(id: number): Observable<object> {
     return this.http.get<any[]>(
-      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${environment.API_KEY}`
+      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.API_KEY}`
     );
   }
 
