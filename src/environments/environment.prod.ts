@@ -1,13 +1,12 @@
 export const environment = {
   production: true,
-  runtimeConfigUrl:
-    'https://www.your-domain.com/.netlify/functions/get-runtime-config-data-function',
   // Spoonacular API
   API_KEY: process.env.API_KEY,
   // User Requests
   REGISTER_USER: process.env.REGISTER_USER,
   SIGN_IN: process.env.SIGN_IN,
   PROFILE_USER: process.env.PROFILE_USER,
+
   // CRUD Requests
   GET_ALL_RECIPE_LISTS: process.env.GET_ALL_RECIPE_LISTS,
   GET_RECIPE_LIST: process.env.GET_RECIPE_LIST,

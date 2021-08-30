@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment.prod';
+import { environment } from '../../environments/environment';
 @Injectable({
   providedIn: 'root',
 })
@@ -9,13 +9,13 @@ export class RecipeService {
   recipes: any = [];
   userRecipes: any = [];
   recipeId: number;
-  recipeUrl: string = `https://api.spoonacular.com/recipes/random?number=100&apiKey=${process.env.API_KEY}`;
+  recipeUrl: string = `https://api.spoonacular.com/recipes/random?number=100&apiKey=${environment.API_KEY}`;
 
   constructor(private http: HttpClient) {}
 
   getRecipe(id: number): Observable<object> {
     return this.http.get<any[]>(
-      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${process.env.API_KEY}`
+      `https://api.spoonacular.com/recipes/${id}/information?apiKey=${environment.API_KEY}`
     );
   }
 
