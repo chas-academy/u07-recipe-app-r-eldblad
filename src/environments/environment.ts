@@ -14,7 +14,6 @@ export const environment = {
   UPDATE_RECIPE_LIST: 'http://127.0.0.1:80/api/auth/recipe-lists',
   DELETE_RECIPE_LIST: 'http://127.0.0.1:80/api/auth/recipe-lists',
 };
-
 /*
 export const environment = {
   production: false,

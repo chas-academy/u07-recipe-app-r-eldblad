@@ -18,7 +18,6 @@ export class RecipeListDetailComponent implements OnInit {
   updatedRecipes: any = [];
   updatedRecipeIds: any = [];
   subscription: Subscription;
-  newSet: any = [];
 
   constructor(
     private recipeListService: RecipeListService,
@@ -46,24 +45,23 @@ export class RecipeListDetailComponent implements OnInit {
   }
 
   onDelete(recipeId: number) {
-    console.log(`b4: ${this.recipes}`);
-     
-     // gamla: this.updatedRecipes = this.recipes.filter(
-      this.updatedRecipes = this.recipeList.recipe_ids.filter(
-      (item: any) => item.id !== recipeId
+    console.log(`b4: ${this.recipeList.recipe_ids}`);
+    // gamla: this.updatedRecipes = this.recipes.filter(
+    this.updatedRecipes = this.recipeList.recipe_ids.filter(
+      (item: any) => item !== recipeId
     );
     //this.updatedRecipes = this.recipes.filter((item: any) => console.log(item));
     console.log(`after filter: ${this.updatedRecipes}`);
-    this.updatedRecipes.forEach((element: any) => {
-      if (this.updatedRecipeIds === null) {
-        JSON.parse(this.updatedRecipeIds).push(element.id);
-      }
-    });
-    console.log(this.updatedRecipeIds);
+    //this.updatedRecipes.forEach((element: any) => {
+    //  if (this.updatedRecipeIds === null) {
+    //    JSON.parse(this.updatedRecipeIds).push(element.id);
+    //  }
+    //});
+    //console.log(this.updatedRecipeIds);
     this.recipeListService
       .updateList(
         this.recipeList.title,
-        JSON.stringify(this.updatedRecipeIds),
+        JSON.stringify(this.updatedRecipes),
         this.recipeListId
       )
       .subscribe();
