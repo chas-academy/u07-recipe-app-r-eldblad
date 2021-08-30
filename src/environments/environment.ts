@@ -1,41 +1,16 @@
 export const environment = {
   production: false,
-  API_KEY: 'b492684e487f4ca9a1e8a11b288e4239',
-
+  // Spoonacular API
+  API_KEY: process.env.API_KEY,
   // User Requests
-  REGISTER_USER:
-    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/register',
-  SIGN_IN: 'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/login',
-  PROFILE_USER:
-    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/user-profile',
+  REGISTER_USER: process.env.REGISTER_USER,
+  SIGN_IN: process.env.SIGN_IN,
+  PROFILE_USER: process.env.PROFILE_USER,
 
   // CRUD Requests
-  GET_ALL_RECIPE_LISTS:
-    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/recipe-lists',
-  GET_RECIPE_LIST:
-    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/recipe-lists',
-  CREATE_RECIPE_LIST:
-    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/recipe-lists',
-  UPDATE_RECIPE_LIST:
-    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/recipe-lists',
-  DELETE_RECIPE_LIST:
-    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/recipe-lists',
+  GET_ALL_RECIPE_LISTS: process.env.GET_ALL_RECIPE_LISTS,
+  GET_RECIPE_LIST: process.env.GET_RECIPE_LIST,
+  CREATE_RECIPE_LIST: process.env.CREATE_RECIPE_LIST,
+  UPDATE_RECIPE_LIST: process.env.UPDATE_RECIPE_LIST,
+  DELETE_RECIPE_LIST: process.env.DELETE_RECIPE_LIST,
 };
-/*
-export const environment = {
-  production: false,
-  API_KEY: 'b492684e487f4ca9a1e8a11b288e4239',
-
-  // User Requests
-  REGISTER_USER: 'http://127.0.0.1:51680/api/auth/register',
-  SIGN_IN: 'http://127.0.0.1:51680/api/auth/login',
-  PROFILE_USER: 'http://127.0.0.1:51680/api/auth/user-profile',
-
-  // CRUD Requests
-  GET_ALL_RECIPE_LISTS: 'http://127.0.0.1:51680/api/auth/recipe-lists',
-  GET_RECIPE_LIST: 'http://127.0.0.1:51680/api/auth/recipe-lists',
-  CREATE_RECIPE_LIST: 'http://127.0.0.1:51680/api/auth/recipe-lists',
-  UPDATE_RECIPE_LIST: 'http://127.0.0.1:51680/api/auth/recipe-lists',
-  DELETE_RECIPE_LIST: 'http://127.0.0.1:51680/api/auth/recipe-lists',
-};
-*/
