@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class RecipeListService {
-  getAllRecipeLists = process.env.GET_ALL_RECIPE_LISTS;
-  fetchRecipeList = process.env.GET_RECIPE_LIST;
-  createListUrl = process.env.CREATE_RECIPE_LIST;
-  deleteListUrl = process.env.DELETE_RECIPE_LIST;
-  updateListUrl = process.env.UPDATE_RECIPE_LIST;
+  getAllRecipeLists = environment.GET_ALL_RECIPE_LISTS;
+  fetchRecipeList = environment.GET_RECIPE_LIST;
+  createListUrl = environment.CREATE_RECIPE_LIST;
+  deleteListUrl = environment.DELETE_RECIPE_LIST;
+  updateListUrl = environment.UPDATE_RECIPE_LIST;
 
   constructor(private http: HttpClient) {}
 
