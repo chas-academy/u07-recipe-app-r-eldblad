@@ -1,16 +1,23 @@
 export const environment = {
   production: true,
   // Spoonacular API
-  API_KEY: process.env.API_KEY,
+  API_KEY: 'b492684e487f4ca9a1e8a11b288e4239',
   // User Requests
-  REGISTER_USER: process.env.REGISTER_USER,
-  SIGN_IN: process.env.SIGN_IN,
-  PROFILE_USER: process.env.PROFILE_USER,
+  REGISTER_USER:
+    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/register',
+  SIGN_IN: 'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/login',
+  PROFILE_USER:
+    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/user-profile',
 
   // CRUD Requests
-  GET_ALL_RECIPE_LISTS: process.env.GET_ALL_RECIPE_LISTS,
-  GET_RECIPE_LIST: process.env.GET_RECIPE_LIST,
-  CREATE_RECIPE_LIST: process.env.CREATE_RECIPE_LIST,
-  UPDATE_RECIPE_LIST: process.env.UPDATE_RECIPE_LIST,
-  DELETE_RECIPE_LIST: process.env.DELETE_RECIPE_LIST,
+  GET_ALL_RECIPE_LISTS:
+    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/recipe-lists',
+  GET_RECIPE_LIST:
+    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/recipe-lists',
+  CREATE_RECIPE_LIST:
+    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/recipe-lists',
+  UPDATE_RECIPE_LIST:
+    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/recipe-lists',
+  DELETE_RECIPE_LIST:
+    'https://u08-recipe-api-r-eldblad.herokuapp.com/api/auth/recipe-lists',
 };
