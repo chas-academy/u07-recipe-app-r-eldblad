@@ -9,8 +9,7 @@ export class RecipeService {
   recipes: any = [];
   userRecipes: any = [];
   recipeId: number;
-  apiKey = process.env.API_KEY;
-  recipeUrl: string = `https://api.spoonacular.com/recipes/random?number=100&apiKey=${this.apiKey}`;
+  recipeUrl: string = `https://api.spoonacular.com/recipes/random?number=100&apiKey=${environment.API_KEY}`;
 
   constructor(private http: HttpClient) {}
 
